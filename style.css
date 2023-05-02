@@ -1,0 +1,125 @@
+.gnav {
+  z-index: 999;
+  position: relative;
+}
+
+/* button */
+.gnav__open,
+.gnav__close {
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: block;
+  width: 80px;
+  height: 80px;
+  background-color: #cccccc;
+  cursor: pointer;
+}
+.gnav__open__line,
+.gnav__close__line {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: block;
+  width: 50%;
+  height: 25%;
+  color: #000000;
+}
+.gnav__open__line::before,
+.gnav__open__line::after,
+.gnav__close__line::before,
+.gnav__close__line::after {
+  position: absolute;
+  left: 50%;
+  display: block;
+  width: 100%;
+  height: 3px;
+  content: '';
+  background-color: currentColor;
+}
+.gnav__open__line::before {
+  top: 0;
+  transform: translate(-50%, 0);
+}
+.gnav__open__line::after {
+  bottom: 0;
+  transform: translate(-50%, 0);
+}
+.gnav__close__line::before {
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.gnav__close__line::after {
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+/* modal */
+.gnav__modal {
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  right: 0;
+  transform: translate(100%, 0);
+  overflow-y: auto;
+  visibility: hidden;
+  display: block;
+  width: 50vw;
+  height: 100vh;
+  background-color: #fff;
+  transition: all 0.4s ease;
+}
+
+/* overlay */
+.gnav__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  visibility: hidden;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+
+/* content */
+.gnav__content {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+}
+
+.gnav__content div {
+  margin: 0 auto;
+}
+
+/* state */
+.gnav.is-active .gnav__modal {
+  transform: unset;
+  visibility: visible;
+  transition: all 0.4s ease;
+}
+.gnav.is-active .gnav__overlay {
+  visibility: visible;
+  opacity: 1;
+  transition: all 0.4s ease;
+}
+
+/* sp */
+@media screen and (max-width: 600px) {
+  .gnav__open,
+  .gnav__close {
+    width: 60px;
+    height: 60px;
+  }
+  .gnav__modal {
+    width: 100%;
+  }
+}
